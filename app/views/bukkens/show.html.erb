@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bukken.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @bukken.price %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @bukken.address %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @bukken.year %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @bukken.note %>
+</p>
+
+<%= link_to 'Edit', edit_bukken_path(@bukken) %> |
+<%= link_to 'Back', bukkens_path %>

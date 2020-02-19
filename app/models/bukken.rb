@@ -1,0 +1,2 @@
+class Bukken < ApplicationRecord
+end
