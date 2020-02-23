@@ -7,22 +7,16 @@ class BukkensController < ApplicationController
     @bukkens = Bukken.all
   end
 
-  # GET /bukkens/1
-  # GET /bukkens/1.json
   def show
   end
 
-  # GET /bukkens/new
   def new
     @bukken = Bukken.new
   end
 
-  # GET /bukkens/1/edit
   def edit
   end
 
-  # POST /bukkens
-  # POST /bukkens.json
   def create
     @bukken = Bukken.new(bukken_params)
 
