@@ -20,7 +20,7 @@ class BukkensController < ApplicationController
 
   def create
     @bukken = Bukken.new(bukken_params)
-
+    
     respond_to do |format|
       if @bukken.save
         format.html { redirect_to @bukken, notice: 'Bukken was successfully created.' }
