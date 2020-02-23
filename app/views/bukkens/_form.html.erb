@@ -36,7 +36,27 @@
     <%= form.text_area :note %>
   </div>
 
+  <%= form.fields_for :stations do |ff| %>
+
+  <div class="field">
+  <%= ff.label :line, "沿線" %>
+  <%= ff.text_field :line%>
+  </div>
+
+  <div class="field">
+  <%= ff.label :station_name, "最寄駅名" %>
+  <%= ff.text_field :station_name%>
+  </div>
+
+  <div class="field">
+  <%= ff.label :walk_time, "所要時間(分)" %>
+  <%= ff.number_field :walk_time%>
+  </div>
+
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

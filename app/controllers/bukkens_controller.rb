@@ -12,6 +12,7 @@ class BukkensController < ApplicationController
 
   def new
     @bukken = Bukken.new
+    @bukken.stations.build
   end
 
   def edit
@@ -63,6 +64,6 @@ class BukkensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bukken_params
-      params.require(:bukken).permit(:name, :price, :address, :year, :note)
+      params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:_destroy])
     end
 end
