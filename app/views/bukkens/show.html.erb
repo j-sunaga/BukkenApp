@@ -1,29 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @bukken.name %>
-</p>
+<ul>
+<li><b>物件名: </b><%= @bukken.name %></li>
 
-<p>
-  <strong>Price:</strong>
-  <%= @bukken.price %>
-</p>
+<li><b>賃料: </b><%= @bukken.price%>円</li>
 
-<p>
-  <strong>Address:</strong>
-  <%= @bukken.address %>
-</p>
+<li><b>住所: </b><%= @bukken.address %></li>
 
-<p>
-  <strong>Year:</strong>
-  <%= @bukken.year %>
-</p>
+<li><b>築年数: </b><%= @bukken.year %>年</li>
 
-<p>
-  <strong>Note:</strong>
-  <%= @bukken.note %>
-</p>
+<li><b>備考: </b><%= @bukken.note %></li>
+
+</ul>
+<hr>
+
+<% @bukken.stations.each {|station| %>
+
+<h4>最寄り駅 <%= @station_number+1 %></h4>
+
+<ul>
+
+<li>路線 <%= station.line %></li>
+
+<li>駅名 <%= station.station_name %></li>
+
+<li>徒歩分数 <%= station.walk_time %></li>
+
+</ul>
+
+<% } %>
 
 <%= link_to 'Edit', edit_bukken_path(@bukken) %> |
 <%= link_to 'Back', bukkens_path %>

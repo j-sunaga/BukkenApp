@@ -1,0 +1,40 @@
+body{
+  font-size: 12px;
+}
+
+a{
+  color: black;
+}
+
+//index
+table{
+  width: 80%;
+}
+
+.name,.price,.address,.year{
+  width: 2%;
+}
+
+.note{
+  width: 50%;
+}
+
+
+.edit{
+  width: 1%;
+}
+
+
+//show
+ul {
+  list-style: none;
+  text-indent: 1em;
+}
+
+li {
+margin-bottom: 1rem;
+}
+
+h4 {
+  text-indent: 1em;
+}
