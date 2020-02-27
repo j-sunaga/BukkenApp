@@ -1,5 +1,7 @@
 class BukkensController < ApplicationController
   before_action :set_bukken, only: [:show, :edit, :update, :destroy]
+  before_action :set_station_number, only: [:show, :edit]
+
 
   # GET /bukkens
   # GET /bukkens.json
@@ -20,7 +22,7 @@ class BukkensController < ApplicationController
 
   def create
     @bukken = Bukken.new(bukken_params)
-    
+
     respond_to do |format|
       if @bukken.save
         format.html { redirect_to @bukken, notice: 'Bukken was successfully created.' }
@@ -66,4 +68,9 @@ class BukkensController < ApplicationController
     def bukken_params
       params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:_destroy])
     end
+
+    def set_station_number
+      @station_number = 0
+    end
+
 end
