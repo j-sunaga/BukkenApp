@@ -24,7 +24,6 @@ table{
   width: 1%;
 }
 
-
 //show
 ul {
   list-style: none;
@@ -37,4 +36,19 @@ margin-bottom: 1rem;
 
 h4 {
   text-indent: 1em;
+}
+
+//new
+.item{
+  margin-bottom: 1px;
+}
+
+.actions{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.actions input{
+  font-size: 10px;
 }

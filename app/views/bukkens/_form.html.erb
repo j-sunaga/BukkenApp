@@ -12,45 +12,47 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <p class="item"><%= form.label :name,"物件名" %></p>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+    <p class="item"><%= form.label :price,"賃料" %></p>
+    <%= form.number_field :price %>円
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <p class="item"><%= form.label :address,"住所" %></p>
     <%= form.text_field :address %>
   </div>
 
   <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year %>
+    <p class="item"><%= form.label :year,"築年数" %></p>
+    <%= form.number_field :year %>年
   </div>
 
   <div class="field">
-    <%= form.label :note %>
+    <p class="item"><%= form.label :note,"備考" %></p>
     <%= form.text_area :note %>
   </div>
+
+  <hr>
 
   <%= form.fields_for :stations do |ff| %>
 
   <div class="field">
-  <%= ff.label :line, "沿線" %>
+  <p class="item"><%= ff.label :line, "沿線" %></p>
   <%= ff.text_field :line%>
   </div>
 
   <div class="field">
-  <%= ff.label :station_name, "最寄駅名" %>
+  <p class="item"><%= ff.label :station_name, "駅名" %></p>
   <%= ff.text_field :station_name%>
   </div>
 
   <div class="field">
-  <%= ff.label :walk_time, "所要時間(分)" %>
-  <%= ff.number_field :walk_time%>
+  <p class="item"><%= ff.label :walk_time, "徒歩分数" %></p>
+  <%= ff.number_field :walk_time%>分
   </div>
 
   <% end %>
