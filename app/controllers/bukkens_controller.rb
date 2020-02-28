@@ -1,6 +1,5 @@
 class BukkensController < ApplicationController
   before_action :set_bukken, only: [:show, :edit, :update, :destroy]
-  before_action :set_station_number, only: [:show, :edit]
 
   def index
     @bukkens = Bukken.all
@@ -62,10 +61,6 @@ class BukkensController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bukken_params
       params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:_destroy])
-    end
-
-    def set_station_number
-      @station_number = 0
     end
 
 end

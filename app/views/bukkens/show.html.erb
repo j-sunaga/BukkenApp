@@ -14,9 +14,9 @@
 </ul>
 <hr>
 
-<% @bukken.stations.each {|station| %>
+<% @bukken.stations.each_with_index {|station,index| %>
 
-<h4>最寄り駅 <%= @station_number+1 %></h4>
+<h4>最寄り駅 <%= index+1 %></h4>
 
 <ul>
 
