@@ -2,9 +2,6 @@ class BukkensController < ApplicationController
   before_action :set_bukken, only: [:show, :edit, :update, :destroy]
   before_action :set_station_number, only: [:show, :edit]
 
-
-  # GET /bukkens
-  # GET /bukkens.json
   def index
     @bukkens = Bukken.all
   end
@@ -25,7 +22,7 @@ class BukkensController < ApplicationController
 
     respond_to do |format|
       if @bukken.save
-        format.html { redirect_to @bukken, notice: 'Bukken was successfully created.' }
+        format.html { redirect_to @bukken, notice: '物件情報の登録が完了しました' }
         format.json { render :show, status: :created, location: @bukken }
       else
         format.html { render :new }
@@ -34,12 +31,10 @@ class BukkensController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bukkens/1
-  # PATCH/PUT /bukkens/1.json
   def update
     respond_to do |format|
       if @bukken.update(bukken_params)
-        format.html { redirect_to @bukken, notice: 'Bukken was successfully updated.' }
+        format.html { redirect_to @bukken, notice: '物件情報を更新しました' }
         format.json { render :show, status: :ok, location: @bukken }
       else
         format.html { render :edit }
@@ -53,7 +48,7 @@ class BukkensController < ApplicationController
   def destroy
     @bukken.destroy
     respond_to do |format|
-      format.html { redirect_to bukkens_url, notice: 'Bukken was successfully destroyed.' }
+      format.html { redirect_to bukkens_url, notice: '物件情報を削除しました' }
       format.json { head :no_content }
     end
   end
