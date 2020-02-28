@@ -38,7 +38,10 @@
 
   <hr>
 
-  <%= form.fields_for :stations do |ff| %>
+<% @bukken.stations.each_with_index do |station, index| %>
+  <%= form.fields_for :stations,station do |ff| %>
+
+  <h4>最寄り駅 <%= index+1 %></h4>
 
   <div class="field">
   <p class="item"><%= ff.label :line, "沿線" %></p>
@@ -57,6 +60,7 @@
 
   <% end %>
 
+  <% end %>
   <div class="actions">
     <%= form.submit %>
   </div>
