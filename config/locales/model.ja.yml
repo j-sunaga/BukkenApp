@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      bukken: 物件情報
+      station: 最寄り駅
+    attributes:
+      bukken:
+        name: 物件名
+        price: 賃料
+        address: 住所
+        year: 築年数
+        note: 備考
+      station:
+        line: 沿線
+        station_name: 駅名
+        walk_time: 徒歩分数 
