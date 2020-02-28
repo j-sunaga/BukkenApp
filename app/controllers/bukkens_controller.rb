@@ -14,7 +14,7 @@ class BukkensController < ApplicationController
 
   def new
     @bukken = Bukken.new
-    @bukken.stations.build
+    2.times{@bukken.stations.build}
   end
 
   def edit
