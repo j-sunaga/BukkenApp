@@ -1,4 +1,5 @@
 class BukkensController < ApplicationController
+  before_action :add_station, only: [:edit]
   before_action :set_bukken, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -32,7 +33,7 @@ class BukkensController < ApplicationController
 
   def update
     respond_to do |format|
-      if @bukken.update(bukken_params)
+      if @bukken.update(bukken_params_edit)
         format.html { redirect_to @bukken, notice: '物件情報を更新しました' }
         format.json { render :show, status: :ok, location: @bukken }
       else
@@ -58,7 +59,26 @@ class BukkensController < ApplicationController
       @bukken = Bukken.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    #編集画面で新たに最寄り駅を登録できるようにするメソッド。
+    #ブランクの最寄り駅がある場合は新たな最寄り駅の登録画面を非表示
+    def add_station
+      blank = false
+      Bukken.find(params[:id]).stations.each do |station|
+        if station[:line].blank? && station[:station_name].blank? && station[:walk_time].blank?
+          blank = true
+        end
+      end
+      unless blank
+        Bukken.find(params[:id]).stations.create
+      end
+    end
+
+    #update用のstrongparameter
+    def bukken_params_edit
+      params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:id,:_destroy])
+    end
+
+    #登録用のstrongparameter
     def bukken_params
       params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:_destroy])
     end

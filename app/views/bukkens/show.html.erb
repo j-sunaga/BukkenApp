@@ -14,7 +14,10 @@
 </ul>
 <hr>
 
-<% @bukken.stations.each_with_index {|station,index| %>
+<% @stations_order.each_with_index {|station,index| %>
+  <% if station[:line].blank? && station[:station_name].blank? && station[:walk_time].blank? then %>
+    <% next %>
+  <% end %>
 
 <h4>最寄り駅 <%= index+1 %></h4>
 
