@@ -7,6 +7,7 @@ class BukkensController < ApplicationController
   end
 
   def show
+    @stations_order = @bukken.stations.order(:walk_time)
   end
 
   def new
@@ -19,7 +20,6 @@ class BukkensController < ApplicationController
 
   def create
     @bukken = Bukken.new(bukken_params)
-
     respond_to do |format|
       if @bukken.save
         format.html { redirect_to @bukken, notice: '物件情報の登録が完了しました' }
