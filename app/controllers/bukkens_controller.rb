@@ -20,31 +20,24 @@ class BukkensController < ApplicationController
 
   def create
     @bukken = Bukken.new(bukken_params)
-    respond_to do |format|
-      if @bukken.save
-        format.html { redirect_to @bukken, notice: '物件情報の登録が完了しました' }
-      else
-        format.html { render :new }
-      end
+    if @bukken.save
+      redirect_to bukkens_path, notice: "物件情報の登録が完了しました"
+    else
+      render action: :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @bukken.update(bukken_params_edit)
-        format.html { redirect_to @bukken, notice: '物件情報を更新しました' }
-      else
-        format.html { render :edit }
-      end
+    if @bukken.update(bukken_params_edit)
+      redirect_to bukken_path(@bukken.id), notice: '物件情報を更新しました'
+    else
+      render :edit
     end
   end
 
   def destroy
     @bukken.destroy
-    respond_to do |format|
-      format.html { redirect_to bukkens_url, notice: '物件情報を削除しました' }
-      format.json { head :no_content }
-    end
+    redirect_to bukkens_path, notice: '物件情報を削除しました'
   end
 
   private
