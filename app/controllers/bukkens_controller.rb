@@ -56,7 +56,10 @@ class BukkensController < ApplicationController
       end
     end
     unless blank
-      Bukken.find(params[:id]).stations.create
+      #最寄り駅の登録数を3に制限
+      if Bukken.find(params[:id]).stations.count <3
+        Bukken.find(params[:id]).stations.create
+      end
     end
   end
 
