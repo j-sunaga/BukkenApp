@@ -23,10 +23,8 @@ class BukkensController < ApplicationController
     respond_to do |format|
       if @bukken.save
         format.html { redirect_to @bukken, notice: '物件情報の登録が完了しました' }
-        format.json { render :show, status: :created, location: @bukken }
       else
         format.html { render :new }
-        format.json { render json: @bukken.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -35,16 +33,12 @@ class BukkensController < ApplicationController
     respond_to do |format|
       if @bukken.update(bukken_params_edit)
         format.html { redirect_to @bukken, notice: '物件情報を更新しました' }
-        format.json { render :show, status: :ok, location: @bukken }
       else
         format.html { render :edit }
-        format.json { render json: @bukken.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /bukkens/1
-  # DELETE /bukkens/1.json
   def destroy
     @bukken.destroy
     respond_to do |format|
@@ -54,33 +48,33 @@ class BukkensController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bukken
-      @bukken = Bukken.find(params[:id])
-    end
+
+  def set_bukken
+    @bukken = Bukken.find(params[:id])
+  end
 
     #編集画面で新たに最寄り駅を登録できるようにするメソッド。
     #ブランクの最寄り駅がある場合は新たな最寄り駅の登録画面を非表示
-    def add_station
-      blank = false
-      Bukken.find(params[:id]).stations.each do |station|
-        if station[:line].blank? && station[:station_name].blank? && station[:walk_time].blank?
-          blank = true
-        end
-      end
-      unless blank
-        Bukken.find(params[:id]).stations.create
+  def add_station
+    blank = false
+    Bukken.find(params[:id]).stations.each do |station|
+      if station[:line].blank? && station[:station_name].blank? && station[:walk_time].blank?
+        blank = true
       end
     end
-
-    #update用のstrongparameter
-    def bukken_params_edit
-      params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:id,:_destroy])
+    unless blank
+      Bukken.find(params[:id]).stations.create
     end
+  end
 
-    #登録用のstrongparameter
-    def bukken_params
-      params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:_destroy])
-    end
+  #update用のstrongparameter
+  def bukken_params_edit
+    params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:id,:_destroy])
+  end
+
+  #登録用のstrongparameter
+  def bukken_params
+    params.require(:bukken).permit(:name, :price, :address, :year, :note,stations_attributes:[:line, :station_name, :walk_time,:bukken_id,:_destroy])
+  end
 
 end

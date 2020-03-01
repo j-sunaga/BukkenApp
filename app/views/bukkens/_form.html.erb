@@ -2,7 +2,6 @@
   <% if bukken.errors.any? %>
     <div id="error_explanation">
       <h2>物件情報の保存に失敗しました:</h2>
-
       <ul>
       <% bukken.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -38,28 +37,26 @@
 
   <hr>
 
-<% @bukken.stations.each_with_index do |station, index| %>
-  <%= form.fields_for :stations,station do |ff| %>
+  <% @bukken.stations.each_with_index do |station, index| %>
+    <%= form.fields_for :stations,station do |ff| %>
 
-  <h4>最寄り駅 <%= index+1 %></h4>
+      <h4>最寄り駅 <%= index+1 %></h4>
 
-  <div class="field">
-  <p class="item"><%= ff.label :line, "沿線" %></p>
-  <%= ff.text_field :line%>
-  </div>
+      <div class="field">
+        <p class="item"><%= ff.label :line, "沿線" %></p>
+        <%= ff.text_field :line%>
+      </div>
 
-  <div class="field">
-  <p class="item"><%= ff.label :station_name, "駅名" %></p>
-  <%= ff.text_field :station_name%>
-  </div>
+      <div class="field">
+        <p class="item"><%= ff.label :station_name, "駅名" %></p>
+        <%= ff.text_field :station_name%>
+      </div>
 
-  <div class="field">
-  <p class="item"><%= ff.label :walk_time, "徒歩分数" %></p>
-  <%= ff.number_field :walk_time%>分
-  </div>
-
-  <% end %>
-
+      <div class="field">
+        <p class="item"><%= ff.label :walk_time, "徒歩分数" %></p>
+        <%= ff.number_field :walk_time%>分
+      </div>
+    <% end %>
   <% end %>
   <div class="actions">
     <%= form.submit %>
