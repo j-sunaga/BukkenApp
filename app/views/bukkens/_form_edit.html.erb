@@ -1,0 +1,71 @@
+<%= form_with(model: bukken, local: true) do |form| %>
+  <% if bukken.errors.any? %>
+    <div id="error_explanation">
+      <h2>物件情報の保存に失敗しました:</h2>
+      <ul>
+      <% bukken.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p class="item"><%= form.label :name,"物件名" %></p>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <p class="item"><%= form.label :price,"賃料" %></p>
+    <%= form.number_field :price %>円
+  </div>
+
+  <div class="field">
+    <p class="item"><%= form.label :address,"住所" %></p>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <p class="item"><%= form.label :year,"築年数" %></p>
+    <%= form.number_field :year %>年
+  </div>
+
+  <div class="field">
+    <p class="item"><%= form.label :note,"備考" %></p>
+    <%= form.text_area :note %>
+  </div>
+
+  <hr>
+
+  <% @bukken.stations.each_with_index do |station, index| %>
+    <%= form.fields_for :stations,station do |ff| %>
+
+      <h4>最寄り駅 <%= index+1 %></h4>
+
+      <div class="field">
+        <p class="item"><%= ff.label :line, "沿線" %></p>
+        <%= ff.text_field :line%>
+      </div>
+
+      <div class="field">
+        <p class="item"><%= ff.label :station_name, "駅名" %></p>
+        <%= ff.text_field :station_name%>
+      </div>
+
+      <div class="field">
+        <p class="item"><%= ff.label :walk_time, "徒歩分数" %></p>
+        <%= ff.number_field :walk_time%>分
+      </div>
+
+      <% if index == @bukken.stations.length - 2 then %>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+        <%= link_to '詳細', @bukken %> |
+        <%= link_to '戻る', bukkens_path %>
+      <% end %>
+
+    <% end %>
+  <% end %>
+
+<% end %>
