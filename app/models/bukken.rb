@@ -1,6 +1,6 @@
 class Bukken < ApplicationRecord
   #アソシエーション
-  has_many :stations
+  has_many :stations,dependent: :destroy
 
   #バリデーション
    validates :name, presence: true
