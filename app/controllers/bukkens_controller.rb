@@ -29,6 +29,7 @@ class BukkensController < ApplicationController
 
   def update
     if @bukken.update(bukken_params_edit)
+      delete_null_station(@bukken)
       redirect_to bukken_path(@bukken.id), notice: '物件情報を更新しました'
     else
       render :edit
