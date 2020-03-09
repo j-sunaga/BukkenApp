@@ -7,7 +7,7 @@ class BukkensController < ApplicationController
   end
 
   def show
-    @stations_order = @bukken.stations.order(:walk_time)
+    @stations_order = @bukken.stations.order('walk_time IS NULL, walk_time ASC')
   end
 
   def new
