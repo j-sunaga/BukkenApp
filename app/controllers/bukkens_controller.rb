@@ -1,5 +1,4 @@
 class BukkensController < ApplicationController
-  before_action :add_station, only: [:edit]
   before_action :set_bukken, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -16,6 +15,7 @@ class BukkensController < ApplicationController
   end
 
   def edit
+    @bukken.stations.new
   end
 
   def create
@@ -46,19 +46,12 @@ class BukkensController < ApplicationController
     @bukken = Bukken.find(params[:id])
   end
 
-    #編集画面で新たに最寄り駅を登録できるようにするメソッド。
-    #ブランクの最寄り駅がある場合は新たな最寄り駅の登録画面を非表示
-  def add_station
-    blank = false
-    Bukken.find(params[:id]).stations.each do |station|
-      if station[:line].blank? && station[:station_name].blank? && station[:walk_time].blank?
-        blank = true
-      end
-    end
-    unless blank
-      #最寄り駅の登録数を3に制限
-      if Bukken.find(params[:id]).stations.count <3
-        Bukken.find(params[:id]).stations.create
+  def delete_null_station(bukken)
+    bukken.stations.each_with_index do |station,index|
+      if index != 0 && index != 1 then #最寄駅1,2は削除しない
+        if station[:line].blank? && station[:station_name].blank? && station[:walk_time].blank? then
+          station.destroy
+        end
       end
     end
   end
