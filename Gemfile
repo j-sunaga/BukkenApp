@@ -7,7 +7,7 @@ gem 'rails', '~> 5.2.3'
 gem 'sqlite3'
 
 #Middleware
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3'
 
 #View/Front
 gem 'sass-rails', '~> 5.0'
